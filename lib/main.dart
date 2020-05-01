@@ -50,7 +50,76 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
+      bottomNavigationBar: Theme(
+        data: ThemeData(
+          canvasColor: Colors.white,
+        ),
+        child: _buildBottomNavigationBar(),
+      ),
+    );
+  }
 
+  BottomNavigationBar _buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      elevation: 0,
+      currentIndex: 0,
+      onTap: null,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      type: BottomNavigationBarType.fixed,
+      items: [
+        BottomNavigationBarItem(
+          title: Text("Home"),
+          icon: Icon(
+            Icons.home,
+            size: 32,
+            color: Colors.red,
+          ),
+        ),
+        BottomNavigationBarItem(
+          title: Text("Favorite"),
+          icon: Icon(Icons.star_border),
+        ),
+        BottomNavigationBarItem(
+          title: Text("Location"),
+          icon: Icon(Icons.location_on),
+        ),
+        BottomNavigationBarItem(
+          title: Text("Person"),
+          icon: Icon(Icons.person),
+        ),
+      ],
+    );
+  }
+
+  Container _buildHorizontalScrollCards() {
+    return Container(
+      height: 300,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: <Widget>[
+          _buildCard(AssetImage("assets/parrot.jpg")),
+          SizedBox(width: 8),
+          _buildCard(AssetImage("assets/lizard.jpg")),
+          SizedBox(width: 8),
+          _buildCard(AssetImage("assets/flamingo.jpg")),
+        ],
+      ),
+    );
+  }
+
+  AspectRatio _buildCard(image) {
+    return AspectRatio(
+      aspectRatio: 1.8 / 3,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            image: image,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
     );
   }
 
@@ -148,38 +217,4 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
-
-  Container _buildHorizontalScrollCards() {
-    return Container(
-      height: 300,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          _buildCard(AssetImage("assets/parrot.jpg")),
-          SizedBox(width: 8),
-          _buildCard(AssetImage("assets/lizard.jpg")),
-          SizedBox(width: 8),
-          _buildCard(AssetImage("assets/flamingo.jpg")),
-        ],
-      ),
-    );
-  }
-
-  AspectRatio _buildCard(image) {
-    return AspectRatio(
-      aspectRatio: 1.8 / 3,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(
-            image: image,
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
-  }
-
-
-
 }
